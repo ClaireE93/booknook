@@ -1,6 +1,6 @@
 ### node etc ###
 
-bundle.js
+www/bundle.js
 
 # Logs
 logs
