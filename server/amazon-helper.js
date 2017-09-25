@@ -14,11 +14,13 @@ const find = (data, callback) => {
     const data = results.data();
     const attr = data.Item[0].LargeImage;
     const attr2 = data.Item[0].ItemAttributes;
+    console.log('data is', data.Item[0])
     const recArr = [];
     data.Item.forEach((item) => {
       const obj = {
         title: item.ItemAttributes.Title,
         image: item.LargeImage.URL,
+        url: item.DetailPageURL,
       };
       const author = typeof item.ItemAttributes.Author === 'object' ?
                     item.ItemAttributes.Author.join(', ') : item.ItemAttributes.Author;
