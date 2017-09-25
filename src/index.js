@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Bookshelf from './Bookshelf';
+import App from './App.js';
+
+const data = [
+  {title: 'Frankenstein', author: 'Mary Shelley'},
+  {title: 'The Stranger', author: 'Albert Camus'},
+  {title: 'Catch 22', author: 'Joseph Heller'}
+];
 
 ReactDOM.render(
-  <Counter/>,
+  <App books={data}/>,
   document.getElementById('app')
 );
