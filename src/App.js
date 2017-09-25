@@ -7,10 +7,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: this.props.books
+      books: [],
     }
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.fetch();
   }
 
   handleSearch(title, author) {
@@ -21,9 +22,29 @@ class App extends React.Component {
       data: JSON.stringify({title, author}),
       success: (data) => {
         console.log('successful AJAX post', data);
+        const parsed = JSON.parse(data);
+        const newArr = this.state.books.slice();
+        newArr.push(parsed);
+        this.setState({books: newArr});
       },
       error: (err) => {
         console.log('error in AJAX post', err);
+      }
+    });
+  }
+
+  fetch() {
+    $.ajax({
+      url: '/books',
+      type: 'GET',
+      contentType: 'application/json',
+      success: (data) => {
+        console.log('successful AJAX GET', data);
+        const parsed = JSON.parse(data);
+        this.setState({books: parsed});
+      },
+      error: (err) => {
+        console.log('error in AJAX GET', err);
       }
     });
   }

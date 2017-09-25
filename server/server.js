@@ -3,6 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const db = require('../database/index');
 const bodyParser = require('body-parser');
+// const helpers = require('amazon-helpers');
 
 app.use(morgan('dev'));
 app.use(express.static(__dirname + './../www'));
@@ -20,7 +21,20 @@ app.post('/books', (req, res, next) => {
   };
 
   db.save(req.body, callback);
+});
 
+app.get('/books', (req, res, next) => {
+  const callback = (err, data) => {
+    if (err) {
+      res.statusCode = 404;
+      res.end(err.toString());
+    } else {
+      res.statusCode = 200;
+      res.end(JSON.stringify(data));
+    }
+  };
+
+  db.fetch(callback);
 });
 
 const port = 3000;

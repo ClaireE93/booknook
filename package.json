@@ -27,6 +27,7 @@
     "express": "^4.15.5",
     "mongoose": "^4.11.13",
     "morgan": "^1.8.2",
+    "piranhax": "^1.0.9",
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0"
   },

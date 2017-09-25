@@ -26,8 +26,12 @@ const save = (bookObj, callback) => {
   })
 };
 
+const fetch = (callback) => {
+  Book.find((err, data) => {
+    console.log('found data is', data);
+    callback(err, data);
+  })
+};
+
 module.exports.save = save;
-
-
-SECRET_KEY='vOo6jRd/tZg8OEvpqWX/t/ySYcxIJe4+/Gk2kGVX'
-ACCESS_KEY='AKIAJKKZNNS4TWFYK4MQ'
+module.exports.fetch = fetch;
