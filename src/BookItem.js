@@ -20,16 +20,18 @@ class BookItem extends React.Component {
       data: {title: this.props.book.title, author: this.props.book.author},
       success: (data) => {
         console.log('successful call to Amazon', data);
+        const parsed = JSON.parse(data);
+        this.setState({isClicked: !this.state.isClicked, recommendationArr: parsed})
       },
       error: (err) => {
         console.log('FAILED call to Amazon', err);
       }
     })
 
-    const dummyData = [
-      {title: 'Oathbringer', author: 'Brandon Sanderson'},
-    ];
-    this.setState({isClicked: !this.state.isClicked, recommendationArr: dummyData})
+    // const dummyData = [
+    //   {title: 'Oathbringer', author: 'Brandon Sanderson'},
+    // ];
+    // this.setState({isClicked: !this.state.isClicked, recommendationArr: dummyData})
   }
 
   render() {
