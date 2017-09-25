@@ -28,7 +28,6 @@ const save = (bookObj, callback) => {
 
 const fetch = (callback) => {
   Book.find((err, data) => {
-    console.log('found data is', data);
     callback(err, data);
   })
 };

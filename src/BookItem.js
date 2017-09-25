@@ -1,5 +1,6 @@
 import React from 'react';
-import Recommendations from './Recommendations'
+import Recommendations from './Recommendations';
+import $ from 'jquery';
 
 class BookItem extends React.Component {
   constructor(props) {
@@ -13,6 +14,18 @@ class BookItem extends React.Component {
 
   generateRecommendations() {
     //TODO: Ajax call to get Recommendations
+    $.ajax({
+      url: '/recommendations',
+      type: 'GET',
+      data: {title: this.props.book.title, author: this.props.book.author},
+      success: (data) => {
+        console.log('successful call to Amazon', data);
+      },
+      error: (err) => {
+        console.log('FAILED call to Amazon', err);
+      }
+    })
+
     const dummyData = [
       {title: 'Oathbringer', author: 'Brandon Sanderson'},
     ];

@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const db = require('../database/index');
 const bodyParser = require('body-parser');
-// const helpers = require('amazon-helpers');
+const helpers = require('./amazon-helper');
 
 app.use(morgan('dev'));
 app.use(express.static(__dirname + './../www'));
@@ -35,6 +35,20 @@ app.get('/books', (req, res, next) => {
   };
 
   db.fetch(callback);
+});
+
+app.get('/recommendations', (req, res, next) => {
+  console.log('query is', req.query);
+  const callback = (err, data) => {
+    if (err) {
+      res.statusCode = 404;
+      res.end(err.toString());
+    } else {
+      res.statusCode = 200;
+      res.end(JSON.stringify(data));
+    }
+  };
+  helpers.find(req.query, callback);
 });
 
 const port = 3000;
