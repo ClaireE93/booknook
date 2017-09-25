@@ -1,1 +1,38 @@
+.recommendation-container {
+    display: flex;
+    align-items: center;
+}
 
+.recommendation-item {
+    padding: 10px;
+}
+
+.rec-title {
+    font-weight:bold;
+}
+
+.rec-author {
+
+}
+
+.rec-hide, .rec-show {
+    font-size: 15px;
+    max-height: 0;
+    overflow-y: hidden;
+    -webkit-transition: max-height 0.5s ease-in-out;
+    -moz-transition: max-height 0.5s ease-in-out;
+    -o-transition: max-height 0.5s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
+}
+.rec-show {
+    max-height: 1000px;
+}
+
+.rec-details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+img {
+    height: 25%;
+}

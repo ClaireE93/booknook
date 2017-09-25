@@ -27,11 +27,6 @@ class BookItem extends React.Component {
         console.log('FAILED call to Amazon', err);
       }
     })
-
-    // const dummyData = [
-    //   {title: 'Oathbringer', author: 'Brandon Sanderson'},
-    // ];
-    // this.setState({isClicked: !this.state.isClicked, recommendationArr: dummyData})
   }
 
   render() {
@@ -41,9 +36,10 @@ class BookItem extends React.Component {
         <div>Title: {this.props.book.title}</div>
         <div>Author: {this.props.book.author}</div>
         <button onClick={this.generateRecommendations}>{this.state.isClicked ? 'Hide Recommendations' : 'Generate Recommendations'}</button>
-        {this.state.isClicked &&
+        <Recommendations visible={this.state.isClicked} books={this.state.recommendationArr}/>
+        {/* {this.state.isClicked &&
           <Recommendations books={this.state.recommendationArr}/>
-        }
+        } */}
       </div>
     );
   }
@@ -51,17 +47,3 @@ class BookItem extends React.Component {
 
 
 export default BookItem;
-//
-// function Mailbox(props) {
-//   const unreadMessages = props.unreadMessages;
-//   return (
-//     <div>
-//       <h1>Hello!</h1>
-//       {unreadMessages.length > 0 &&
-//         <h2>
-//           You have {unreadMessages.length} unread messages.
-//         </h2>
-//       }
-//     </div>
-//   );
-// }
