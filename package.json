@@ -1,0 +1,30 @@
+{
+  "name": "hrsf81-mvp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClaireE93/hrsf81-mvp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ClaireE93/hrsf81-mvp/issues"
+  },
+  "homepage": "https://github.com/ClaireE93/hrsf81-mvp#readme",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.0"
+  }
+}
