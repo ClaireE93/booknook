@@ -1,6 +1,7 @@
 import React from 'react';
 import Bookshelf from './Bookshelf';
 import Search from './Search';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,10 +13,19 @@ class App extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  handleSearch(val) {
-    console.log('val is', val);
-    //TODO: Ajax serach and add to this.state.books
-
+  handleSearch(title, author) {
+    $.ajax({
+      url: '/books',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({title, author}),
+      success: (data) => {
+        console.log('successful AJAX post', data);
+      },
+      error: (err) => {
+        console.log('error in AJAX post', err);
+      }
+    });
   }
 
   render() {
