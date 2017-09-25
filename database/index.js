@@ -16,7 +16,18 @@ let bookSchema = mongoose.Schema({
 const Book = mongoose.model('Book', bookSchema);
 
 const save = (bookObj, callback) => {
-
+  const newBook = new Book(bookObj);
+  newBook.save((err, data) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, data);
+    }
+  })
 };
 
 module.exports.save = save;
+
+
+SECRET_KEY='vOo6jRd/tZg8OEvpqWX/t/ySYcxIJe4+/Gk2kGVX'
+ACCESS_KEY='AKIAJKKZNNS4TWFYK4MQ'

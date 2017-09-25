@@ -2,13 +2,13 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const db = require('../database/index');
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 app.use(morgan('dev'));
 app.use(express.static(__dirname + './../www'));
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 
-app.get('/books', (req, res, next) => {
+app.post('/books', (req, res, next) => {
   const callback = (err, data) => {
     if (err) {
       res.statusCode = 404;
@@ -19,7 +19,6 @@ app.get('/books', (req, res, next) => {
     }
   };
 
-  console.log('req body is', req.body);
   db.save(req.body, callback);
 
 });
