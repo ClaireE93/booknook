@@ -52,7 +52,15 @@ class BookItem extends React.Component {
 
     return (
       <div className='bookItem'>
-        <div><img src={this.props.book.image || '../book-cover.jpg'} onClick={this.handleClick}/></div>
+        {/* <div className='img-container'>
+          <div className="text">{this.props.book.title}</div>
+        </div> */}
+        <div className='img-container'>
+            <img src={this.props.book.image || '../book-cover.jpg'} onClick={this.handleClick}/>
+            <div className='overlay'>
+              <div className='text'>{this.props.book.title}</div>
+            </div>
+        </div>
         <div className={this.state.showDetails ? 'details-container-show' : 'details-container-hide'}>
           <div className='details-container' onKeyDown={this.handleKeyDown}>
             <img className='exit-img' src='/exit.png' onClick={this.handleClick}/>

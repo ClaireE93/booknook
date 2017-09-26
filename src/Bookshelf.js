@@ -6,9 +6,11 @@ class Bookshelf extends React.Component {
     return (
       <div className='bookshelf'>
         <h1>Bookshelf</h1>
-        {this.props.books.map((book) => (
-          <BookItem key={book.title} book={book}/>
-        ))}
+        <div className='bookshelf-container'>
+          {this.props.books.map((book) => (
+            <BookItem key={book.title} book={book}/>
+          ))}
+        </div>
       </div>
     );
   }
