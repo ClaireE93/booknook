@@ -47,15 +47,60 @@ button:hover {
     background-color: rgba(211,255,233, 0.5);
 }
 
+.rec-item-container {
+    padding: 10px;
+    margin-right: 20px;
+    width: 20%;
+    cursor: pointer;
+}
+
 .error-message {
     font-size: 20px;
     font-weight: bold:
 }
 
-.search-result-container, .recommendation-container {
+.search-result-container {
     display: flex;
     flex-wrap: wrap;
     text-align: center;
+}
+
+.recommendation-container {
+    display: flex;
+    /* flex-wrap: wrap; */
+    text-align: center;
+    height: 50%;
+    overflow-x: scroll;
+    width: auto;
+    /* top: 50%; */
+}
+
+.cover-img {
+    height: 50%;
+}
+
+.book-detail-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+}
+
+.description {
+    width: 50%;
+    height: 50%;
+    overflow-y:scroll;
+    color: white;
+    font-size: 0.7em;
+    margin-left: 10px;
+    /*display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;*/
+    /*overflow: hidden;*/
+}
+
+.rec-image {
+    height: 70%;
 }
 
 img {

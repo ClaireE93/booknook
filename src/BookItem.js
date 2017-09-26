@@ -11,6 +11,7 @@ class BookItem extends React.Component {
       showDetails: false,
       lastUpdate: 0,
     }
+
     this.generateRecommendations = this.generateRecommendations.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleExit = this.handleExit.bind(this);
@@ -62,6 +63,9 @@ class BookItem extends React.Component {
 
   render() {
 
+    const description = this.props.book.desc ?
+          this.props.book.desc.replace(/<\/?[^>]+(>|$)/g, "") : 'No Description Available';
+
     return (
       <div className='bookItem'>
         <div className='img-container'>
@@ -73,6 +77,11 @@ class BookItem extends React.Component {
         <div className={this.state.showDetails ? 'details-container-show' : 'details-container-hide'}>
           <div className='details-container'>
             <img className='exit-img' src='/exit.png' onClick={this.handleExit}/>
+            <div className='book-detail-container'>
+              <img className='cover-img' src={this.props.book.image}/>
+              {/* <div className='description'>{this.props.book.desc}</div> */}
+              <div className='description'>{description}</div>
+            </div>
             <Recommendations visible={this.state.isClicked} books={this.state.recommendationArr}/>
           </div>
         </div>
