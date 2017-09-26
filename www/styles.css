@@ -54,6 +54,10 @@ button:hover {
     cursor: pointer;
 }
 
+.rec-item-container:hover {
+    background-color: rgba(211,255,233, 0.5);
+}
+
 .error-message {
     font-size: 20px;
     font-weight: bold:
@@ -75,6 +79,13 @@ button:hover {
     /* top: 50%; */
 }
 
+.delete-button {
+    height: auto;
+    margin-right: 10px;
+    /*font-size: 0.5em;*/
+    font-size: 75%;
+}
+
 .cover-img {
     height: 50%;
 }
@@ -83,6 +94,7 @@ button:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     margin: 10px;
 }
 

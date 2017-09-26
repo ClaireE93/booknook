@@ -30,16 +30,21 @@ const save = (bookObj, callback) => {
 };
 
 const fetch = (callback) => {
-  // Book.remove(() => {
-  //   Book.find((err, data) => {
-  //     callback(err, data);
-  //   })
-  // });
-
   Book.find((err, data) => {
     callback(err, data);
   });
 };
 
+const deleteEntry = (ASIN, callback) => {
+  Book.remove({ ASIN }, function (err) {
+    if (err) {
+        callback(err, null);
+    } else {
+      callback(null);
+    }
+  });
+};
+
 module.exports.save = save;
 module.exports.fetch = fetch;
+module.exports.deleteEntry = deleteEntry;

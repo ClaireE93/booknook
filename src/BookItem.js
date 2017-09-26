@@ -20,9 +20,9 @@ class BookItem extends React.Component {
         this.handleExit();
       }
     });
-    $('body').click(() => {
-      this.handleExit();
-    });
+    // $('body').click(() => {
+    //   this.handleExit();
+    // });
   }
 
   generateRecommendations() {
@@ -78,6 +78,7 @@ class BookItem extends React.Component {
           <div className='details-container'>
             <img className='exit-img' src='/exit.png' onClick={this.handleExit}/>
             <div className='book-detail-container'>
+              <button className='delete-button' onClick={() => {this.props.onClick(this.props.book)}}>Remove <br/>Book</button>
               <img className='cover-img' src={this.props.book.image}/>
               {/* <div className='description'>{this.props.book.desc}</div> */}
               <div className='description'>{description}</div>

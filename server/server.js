@@ -35,6 +35,14 @@ app.get('/books', (req, res, next) => {
   db.fetch(callback);
 });
 
+app.delete('/books', (req, res, next) => {
+  const callback = (err, data) => {
+    endResponse(err, data, res);
+  };
+
+  db.deleteEntry(req.body.ASIN, callback);
+});
+
 app.post('/bookSearch', (req, res, next) => {
   const callback = (err, data) => {
     endResponse(err, data, res);

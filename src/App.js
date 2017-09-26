@@ -18,6 +18,7 @@ class App extends React.Component {
     this.updateBooks = this.updateBooks.bind(this);
     this.noResult = this.noResult.bind(this);
     this.handleSearchSelect = this.handleSearchSelect.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.fetch();
   }
 
@@ -82,6 +83,34 @@ class App extends React.Component {
     this.setState({isSearch: false});
   }
 
+  handleDeleteClick(book) {
+    console.log('book to delete', book);
+    let spliceInd;
+    const targetId = book.ASIN
+    for(let i = 0; i < this.state.books; i++) {
+      if (this.state.books[i].ASIN === targetID) {
+        spliceInd = i;
+      }
+    }
+    const newArr = this.state.books.slice();
+    newArr.splice(spliceInd, 1);
+    this.setState({books: newArr});
+
+    $.ajax({
+      url: '/books',
+      type: 'DELETE',
+      contentType: 'application/json',
+      data: JSON.stringify(book),
+      success: (data) => {
+        console.log('successful DELETE');
+      },
+      error: (err) => {
+        console.log('error in DELETE', err);
+      }
+    });
+
+  }
+
   render() {
     return (
       <div>
@@ -91,7 +120,7 @@ class App extends React.Component {
             data={this.state.searchResults} noResult={this.noResult} isError={this.state.errorMsg}/>
         </div>
         <div className='bookshelf'>
-          <Bookshelf books={this.state.books}/>
+          <Bookshelf books={this.state.books} onClick={this.handleDeleteClick}/>
         </div>
       </div>
     );
