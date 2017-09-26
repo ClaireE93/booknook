@@ -1,3 +1,21 @@
+body {
+    font-family: 'Arvo', serif;
+}
+
+button {
+    font-family: 'Arvo', serif;
+    color: #377771;
+    box-shadow: none;
+    border-radius: 0;
+    /*border: 1px solid black;*/
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: none;
+    font-weight: bold;
+}
+
 
 .rec-hide, .rec-show {
     font-size: 15px;
@@ -38,7 +56,8 @@
 }
 
 .search-item-container:hover {
-    background: rgba(0,0,0,0.2);
+    /*background: rgba(0,0,0,0.2);*/
+    background-color: rgba(211,255,233, 0.5);
 }
 
 .error-message {
@@ -92,7 +111,8 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.8);
+    /*background-color: rgba(0,0,0,0.8);*/
+    background-color: rgba(51,51,58, 0.9);
 }
 
 .details-img {
@@ -118,6 +138,20 @@ img {
     flex-flow: row wrap;
 }
 
+.bookshelf {
+    color: #377771;
+    font-size: 1.5em;
+}
+
+.search {
+    color: #377771;
+    font-size: 1.5em;
+}
+
+.search-bar {
+    padding-bottom: 10px
+}
+
 .img-container {
   position: relative;
   width: 50%;
@@ -139,7 +173,8 @@ img {
   width: 100%;
   opacity: 0;
   transition: .5s ease;
-  background-color: #008CBA;
+  background-color: #9BC4BC;
+  cursor: pointer;
 }
 
 .img-container:hover .overlay {

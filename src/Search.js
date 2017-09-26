@@ -30,7 +30,7 @@ class Search extends React.Component {
   render() {
     return (
       <div className="search-bar">
-        <h1>Search</h1>
+        <div className='search'>Search</div>
         <input id="search-title" type="text" placeholder="Search by title and/or author" value={this.state.query} onChange={this.handleChange} onKeyUp={this.handleKeyUp}/>
         <button className="btn hidden-sm-down" onClick={this.handleClick}>
           <span className="search-button-text">Search</span>
