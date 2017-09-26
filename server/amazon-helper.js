@@ -30,7 +30,7 @@ const findRecs = (data, callback) => {
 const findBook = (data, callback) => {
   client.ItemSearch('Books', {
     Keywords: `${data.query}`,
-    ResponseGroup: ['Images', 'Small'],
+    ResponseGroup: ['Images', 'Small', 'EditorialReview'],
   })
   .then((results) => {
     const data = results.data();
@@ -41,6 +41,7 @@ const findBook = (data, callback) => {
         image: item.LargeImage.URL,
         url: item.DetailPageURL,
         ASIN: item.ASIN,
+        desc: item.EditorialReviews ? item.EditorialReviews.EditorialReview.Content : 'No Description Available',
       };
       const author = typeof item.ItemAttributes.Author === 'object' ?
                     item.ItemAttributes.Author.join(', ') : item.ItemAttributes.Author;

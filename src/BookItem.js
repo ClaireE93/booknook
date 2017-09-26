@@ -13,9 +13,12 @@ class BookItem extends React.Component {
     this.generateRecommendations = this.generateRecommendations.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    $(document).keydown((e) => {
+      if (e.keyCode === 27 && this.state.showDetails) {
+        this.setState({showDetails: false});
+      }
+    });
   }
-
-  //COMPONENTDIDMOUNT for escape listener?
 
   generateRecommendations() {
     $.ajax({
@@ -33,8 +36,8 @@ class BookItem extends React.Component {
   }
 
   handleClick() {
-    console.log('changing state')
-    this.setState({showDetails: !this.state.showDetails})
+    this.setState({showDetails: !this.state.showDetails});
+    // Show this.props.book.desc
   }
 
   handleKeyDown(e) {

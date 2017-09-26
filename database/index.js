@@ -13,6 +13,7 @@ let bookSchema = mongoose.Schema({
   ASIN: {type: String, unique: true},
   image: String,
   url: String,
+  desc: String,
 });
 
 const Book = mongoose.model('Book', bookSchema);

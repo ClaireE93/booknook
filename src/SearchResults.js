@@ -16,7 +16,7 @@ class SearchResults extends React.Component {
           <div className='search-result-container'>
             {this.props.data.map((result) => (
               <div key={result.ASIN} className='search-item-container' onClick={() => (this.props.onClick(result))}>
-                <div className='search-image'><img src={result.image}/></div>
+                <div ><img className='search-image' src={result.image}/></div>
                 <div className='search-details'>
                   <div className='search-title'>{result.title}</div>
                   <div className='search-author'>{result.author}</div>
