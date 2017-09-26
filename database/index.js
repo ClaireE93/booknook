@@ -10,7 +10,9 @@ db.once('open', function() {
 let bookSchema = mongoose.Schema({
   title: {type: String, unique: true},
   author: String,
-  // isbn: {type: STRING, unique: true}
+  ASIN: {type: String, unique: true},
+  image: String,
+  url: String,
 });
 
 const Book = mongoose.model('Book', bookSchema);
@@ -27,9 +29,15 @@ const save = (bookObj, callback) => {
 };
 
 const fetch = (callback) => {
-  Book.find((err, data) => {
-    callback(err, data);
-  })
+  Book.remove(() => {
+    Book.find((err, data) => {
+      callback(err, data);
+    })
+  });
+
+  // Book.find((err, data) => {
+  //   callback(err, data);
+  // });
 };
 
 module.exports.save = save;

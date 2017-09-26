@@ -37,8 +37,7 @@ app.get('/books', (req, res, next) => {
   db.fetch(callback);
 });
 
-app.get('/recommendations', (req, res, next) => {
-  console.log('query is', req.query);
+app.post('/bookSearch', (req, res, next) => {
   const callback = (err, data) => {
     if (err) {
       res.statusCode = 404;
@@ -48,7 +47,21 @@ app.get('/recommendations', (req, res, next) => {
       res.end(JSON.stringify(data));
     }
   };
-  helpers.find(req.query, callback);
+
+  helpers.findBook(req.body, callback)
+});
+
+app.get('/recommendations', (req, res, next) => {
+  const callback = (err, data) => {
+    if (err) {
+      res.statusCode = 404;
+      res.end(err.toString());
+    } else {
+      res.statusCode = 200;
+      res.end(JSON.stringify(data));
+    }
+  };
+  helpers.findRecs(req.query, callback);
 });
 
 const port = 3000;

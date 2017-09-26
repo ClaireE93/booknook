@@ -2,7 +2,7 @@ const keys = require('../config/amazon');
 const Piranhax = require("piranhax");
 const client = new Piranhax(keys.ACCESS_KEY, keys.SECRET_KEY, "booknook0e-20")
 
-const find = (data, callback) => {
+const findRecs = (data, callback) => {
   client.ItemSearch('Books', {
     Keywords: `${data.title} ${data.author}`,
   })
@@ -12,9 +12,9 @@ const find = (data, callback) => {
   })
   .then((results) => {
     const data = results.data();
-    const attr = data.Item[0].LargeImage;
-    const attr2 = data.Item[0].ItemAttributes;
-    console.log('data is', data.Item[0])
+    // const attr = data.Item[0].LargeImage;
+    // const attr2 = data.Item[0].ItemAttributes;
+    // console.log('data is', data.Item[0])
     const recArr = [];
     data.Item.forEach((item) => {
       const obj = {
@@ -34,7 +34,35 @@ const find = (data, callback) => {
     console.log('ERROR IN SIMILARITY LOOKUP!', err);
     callback(err, null);
   })
-
 };
 
-module.exports.find = find;
+const findBook = (data, callback) => {
+  client.ItemSearch('Books', {
+    Keywords: `${data.title} ${data.author}`,
+    ResponseGroup: ['Images', 'Small'],
+  })
+  .then((results) => {
+    const data = results.data();
+    const final = [];
+    data.Item.forEach((item) => {
+      const obj = {
+        title: item.ItemAttributes.Title,
+        image: item.LargeImage.URL,
+        url: item.DetailPageURL,
+        ASIN: item.ASIN,
+      };
+      const author = typeof item.ItemAttributes.Author === 'object' ?
+                    item.ItemAttributes.Author.join(', ') : item.ItemAttributes.Author;
+      obj.author = author;
+      final.push(obj);
+    });
+
+    callback(null, final);
+  })
+  .catch((err) => {
+    callback(err, null);
+  });
+};
+
+module.exports.findRecs = findRecs;
+module.exports.findBook = findBook;
