@@ -108,7 +108,14 @@ img {
 }
 
 .exit-img {
-    height: 20px;
+    height: 0.7em;
+    top: 2%;
+    right: 5%;
+    position: fixed;
+}
+
+.exit-img:hover {
+    cursor: pointer;
 }
 
 .bookshelf-container{

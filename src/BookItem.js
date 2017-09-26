@@ -13,26 +13,24 @@ class BookItem extends React.Component {
     }
     this.generateRecommendations = this.generateRecommendations.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleExit = this.handleExit.bind(this);
     $(document).keydown((e) => {
       if (e.keyCode === 27 && this.state.showDetails) {
-        this.setState({showDetails: false, isClicked: false});
+        this.handleExit();
       }
     });
     $('body').click(() => {
-      this.setState({showDetails: false, isClicked: false});
-    });
-    $('.search-item-container').click((e) => {
-       e.stopPropagation();
+      this.handleExit();
     });
   }
 
   generateRecommendations() {
     //NOTE: Only fetch new recommendations once a day. Commented out
     // Since animations are not working.
-    const curDate = new Date();
-    const dateDiff = curDate - this.state.lastUpdate;
-    const MS_IN_DAY = 1000 * 60 * 60 * 24;
 
+    // const curDate = new Date();
+    // const dateDiff = curDate - this.state.lastUpdate;
+    // const MS_IN_DAY = 1000 * 60 * 60 * 24;
     // if (dateDiff < MS_IN_DAY) {
     //   this.setState({isClicked: true});
     //   return;
@@ -58,6 +56,10 @@ class BookItem extends React.Component {
     this.generateRecommendations();
   }
 
+  handleExit() {
+    this.setState({showDetails: false, isClicked: false});
+  }
+
   render() {
 
     return (
@@ -70,6 +72,7 @@ class BookItem extends React.Component {
         </div>
         <div className={this.state.showDetails ? 'details-container-show' : 'details-container-hide'}>
           <div className='details-container'>
+            <img className='exit-img' src='/exit.png' onClick={this.handleExit}/>
             <Recommendations visible={this.state.isClicked} books={this.state.recommendationArr}/>
           </div>
         </div>
