@@ -13,11 +13,10 @@ class BookItem extends React.Component {
   }
 
   generateRecommendations() {
-    //TODO: Ajax call to get Recommendations
     $.ajax({
       url: '/recommendations',
       type: 'GET',
-      data: {title: this.props.book.title, author: this.props.book.author},
+      data: {ASIN: this.props.book.ASIN},
       success: (data) => {
         console.log('successful call to Amazon', data);
         const parsed = JSON.parse(data);

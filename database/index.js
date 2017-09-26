@@ -29,15 +29,15 @@ const save = (bookObj, callback) => {
 };
 
 const fetch = (callback) => {
-  Book.remove(() => {
-    Book.find((err, data) => {
-      callback(err, data);
-    })
-  });
-
-  // Book.find((err, data) => {
-  //   callback(err, data);
+  // Book.remove(() => {
+  //   Book.find((err, data) => {
+  //     callback(err, data);
+  //   })
   // });
+
+  Book.find((err, data) => {
+    callback(err, data);
+  });
 };
 
 module.exports.save = save;

@@ -3,18 +3,9 @@ const Piranhax = require("piranhax");
 const client = new Piranhax(keys.ACCESS_KEY, keys.SECRET_KEY, "booknook0e-20")
 
 const findRecs = (data, callback) => {
-  client.ItemSearch('Books', {
-    Keywords: `${data.title} ${data.author}`,
-  })
-  .then((results) => {
-    const firstBookASIN = results.get("Item[0].ASIN", 0);
-    return client.SimilarityLookup(firstBookASIN, {ResponseGroup: ['Images', 'Small']});
-  })
+  client.SimilarityLookup(data.ASIN, {ResponseGroup: ['Images', 'Small']})
   .then((results) => {
     const data = results.data();
-    // const attr = data.Item[0].LargeImage;
-    // const attr2 = data.Item[0].ItemAttributes;
-    // console.log('data is', data.Item[0])
     const recArr = [];
     data.Item.forEach((item) => {
       const obj = {
