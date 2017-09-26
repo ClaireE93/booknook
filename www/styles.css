@@ -1,10 +1,17 @@
 .recommendation-container {
     display: flex;
     align-items: center;
+    flex-flow: row wrap;
+    color: white;
 }
 
 .recommendation-item {
     padding: 10px;
+    width: 20%;
+}
+
+.rec-image {
+    height: 100%;
 }
 
 .rec-title, .search-title {
@@ -13,6 +20,11 @@
 
 .rec-author, .search-author {
 
+}
+
+.rec-details {
+    /*display: flex;
+    flex-wrap: wrap;*/
 }
 
 .rec-hide, .rec-show {
@@ -28,10 +40,6 @@
     max-height: 1000px;
 }
 
-.rec-details {
-    display: flex;
-    flex-wrap: wrap;
-}
 
 .search-hide, .search-show {
     font-size: 15px;
@@ -107,9 +115,9 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.8);
 }
-
+/*
 .details-container {
     position: absolute;
     top: 50%;
@@ -124,7 +132,7 @@ img {
     justify-content: center;
     align-items: center;
     text-align: center;
-}
+}*/
 
 .details-img {
     width: 35%;

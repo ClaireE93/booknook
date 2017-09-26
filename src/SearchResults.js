@@ -1,4 +1,5 @@
 import React from 'react';
+import BookComponent from './BookComponent';
 
 class SearchResults extends React.Component {
 
@@ -15,13 +16,7 @@ class SearchResults extends React.Component {
           Did you mean...?
           <div className='search-result-container'>
             {this.props.data.map((result) => (
-              <div key={result.ASIN} className='search-item-container' onClick={() => (this.props.onClick(result))}>
-                <div ><img className='search-image' src={result.image}/></div>
-                <div className='search-details'>
-                  <div className='search-title'>{result.title}</div>
-                  <div className='search-author'>{result.author}</div>
-                </div>
-              </div>
+              <BookComponent key={result.ASIN} book={result} onClick={this.props.onClick}/>
             ))}
           </div>
           <button onClick={this.props.noResult}>None of these</button>
@@ -32,3 +27,12 @@ class SearchResults extends React.Component {
 }
 
 export default SearchResults;
+
+
+{/* <div key={result.ASIN} className='search-item-container' onClick={() => (this.props.onClick(result))}>
+  <div ><img className='search-image' src={result.image}/></div>
+  <div className='search-details'>
+    <div className='search-title'>{result.title}</div>
+    <div className='search-author'>{result.author}</div>
+  </div>
+</div>  */}

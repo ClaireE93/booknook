@@ -38,6 +38,7 @@ class BookItem extends React.Component {
   handleClick() {
     this.setState({showDetails: !this.state.showDetails});
     // Show this.props.book.desc
+    this.generateRecommendations();
   }
 
   handleKeyDown(e) {
@@ -56,19 +57,19 @@ class BookItem extends React.Component {
           <div className="text">{this.props.book.title}</div>
         </div> */}
         <div className='img-container'>
-            <img src={this.props.book.image || '../book-cover.jpg'} onClick={this.handleClick}/>
-            <div className='overlay'>
+            <img src={this.props.book.image || '../book-cover.jpg'}/>
+            <div className='overlay' onClick={this.handleClick}>
               <div className='text'>{this.props.book.title}</div>
             </div>
         </div>
         <div className={this.state.showDetails ? 'details-container-show' : 'details-container-hide'}>
           <div className='details-container' onKeyDown={this.handleKeyDown}>
-            <img className='exit-img' src='/exit.png' onClick={this.handleClick}/>
+            {/* <img className='exit-img' src='/exit.png' onClick={this.handleClick}/>
             <img className='details-img' src={this.props.book.image || '../book-cover.jpg'}/>
             <div className='title'>{this.props.book.title}</div>
             <div className='author'>{this.props.book.author}</div>
-            <button onClick={this.generateRecommendations}>{this.state.isClicked ? 'Hide' : 'Find Books'}</button>
-            <Recommendations visible={this.state.isClicked} books={this.state.recommendationArr}/>
+            <button onClick={this.generateRecommendations}>{this.state.isClicked ? 'Hide' : 'Find Books'}</button> */}
+            <Recommendations visible={true || this.state.isClicked} books={this.state.recommendationArr}/>
           </div>
         </div>
       </div>
