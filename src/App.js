@@ -21,12 +21,12 @@ class App extends React.Component {
     this.fetch();
   }
 
-  handleSearch(title, author) {
+  handleSearch(query) {
     $.ajax({
       url: '/bookSearch',
       type: 'POST',
       contentType: 'application/json',
-      data: JSON.stringify({title, author}),
+      data: JSON.stringify({ query }),
       success: (data) => {
         const parsed = JSON.parse(data);
         this.setState({isSearch: !this.state.isSearch, searchResults: parsed});

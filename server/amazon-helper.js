@@ -28,9 +28,8 @@ const findRecs = (data, callback) => {
 };
 
 const findBook = (data, callback) => {
-  console.log(`Searching for: ${data.title} ${data.author}`)
   client.ItemSearch('Books', {
-    Keywords: `${data.title} ${data.author}`,
+    Keywords: `${data.query}`,
     ResponseGroup: ['Images', 'Small'],
   })
   .then((results) => {
