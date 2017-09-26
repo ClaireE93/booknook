@@ -15,14 +15,12 @@ class BookItem extends React.Component {
     this.generateRecommendations = this.generateRecommendations.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleExit = this.handleExit.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
     $(document).keydown((e) => {
       if (e.keyCode === 27 && this.state.showDetails) {
         this.handleExit();
       }
     });
-    // $('body').click(() => {
-    //   this.handleExit();
-    // });
   }
 
   generateRecommendations() {
@@ -61,6 +59,11 @@ class BookItem extends React.Component {
     this.setState({showDetails: false, isClicked: false});
   }
 
+  handleRemove() {
+    this.props.onClick(this.props.book)
+    this.handleExit();
+  }
+
   render() {
 
     const description = this.props.book.desc ?
@@ -78,7 +81,7 @@ class BookItem extends React.Component {
           <div className='details-container'>
             <img className='exit-img' src='/exit.png' onClick={this.handleExit}/>
             <div className='book-detail-container'>
-              <button className='delete-button' onClick={() => {this.props.onClick(this.props.book)}}>Remove <br/>Book</button>
+              <button className='delete-button' onClick={this.handleRemove}>Remove <br/>Book</button>
               <img className='cover-img' src={this.props.book.image}/>
               {/* <div className='description'>{this.props.book.desc}</div> */}
               <div className='description'>{description}</div>

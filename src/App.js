@@ -84,11 +84,10 @@ class App extends React.Component {
   }
 
   handleDeleteClick(book) {
-    console.log('book to delete', book);
-    let spliceInd;
-    const targetId = book.ASIN
-    for(let i = 0; i < this.state.books; i++) {
-      if (this.state.books[i].ASIN === targetID) {
+    let spliceInd = 0;
+    const targetId = book.ASIN;
+    for (let i = 0; i < this.state.books.length; i++) {
+      if (this.state.books[i].ASIN === targetId) {
         spliceInd = i;
       }
     }
