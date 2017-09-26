@@ -1,4 +1,4 @@
-.recommendation-container {
+/*.recommendation-container {
     display: flex;
     align-items: center;
     flex-flow: row wrap;
@@ -25,7 +25,7 @@
 .rec-details {
     /*display: flex;
     flex-wrap: wrap;*/
-}
+}*/
 
 .rec-hide, .rec-show {
     font-size: 15px;
@@ -70,7 +70,7 @@
     font-weight: bold:
 }
 
-.search-result-container {
+.search-result-container, .recommendation-container {
     display: flex;
     flex-wrap: wrap;
     text-align: center;

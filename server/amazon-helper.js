@@ -12,6 +12,7 @@ const findRecs = (data, callback) => {
         title: item.ItemAttributes.Title,
         image: item.LargeImage.URL,
         url: item.DetailPageURL,
+        ASIN: item.ASIN,
       };
       const author = typeof item.ItemAttributes.Author === 'object' ?
                     item.ItemAttributes.Author.join(', ') : item.ItemAttributes.Author;

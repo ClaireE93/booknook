@@ -53,9 +53,6 @@ class BookItem extends React.Component {
 
     return (
       <div className='bookItem'>
-        {/* <div className='img-container'>
-          <div className="text">{this.props.book.title}</div>
-        </div> */}
         <div className='img-container'>
             <img src={this.props.book.image || '../book-cover.jpg'}/>
             <div className='overlay' onClick={this.handleClick}>
@@ -64,12 +61,7 @@ class BookItem extends React.Component {
         </div>
         <div className={this.state.showDetails ? 'details-container-show' : 'details-container-hide'}>
           <div className='details-container' onKeyDown={this.handleKeyDown}>
-            {/* <img className='exit-img' src='/exit.png' onClick={this.handleClick}/>
-            <img className='details-img' src={this.props.book.image || '../book-cover.jpg'}/>
-            <div className='title'>{this.props.book.title}</div>
-            <div className='author'>{this.props.book.author}</div>
-            <button onClick={this.generateRecommendations}>{this.state.isClicked ? 'Hide' : 'Find Books'}</button> */}
-            <Recommendations visible={true || this.state.isClicked} books={this.state.recommendationArr}/>
+            <Recommendations visible={this.state.isClicked} books={this.state.recommendationArr}/>
           </div>
         </div>
       </div>
@@ -79,3 +71,9 @@ class BookItem extends React.Component {
 
 
 export default BookItem;
+
+{/* <img className='exit-img' src='/exit.png' onClick={this.handleClick}/>
+<img className='details-img' src={this.props.book.image || '../book-cover.jpg'}/>
+<div className='title'>{this.props.book.title}</div>
+<div className='author'>{this.props.book.author}</div>
+<button onClick={this.generateRecommendations}>{this.state.isClicked ? 'Hide' : 'Find Books'}</button>  */}
