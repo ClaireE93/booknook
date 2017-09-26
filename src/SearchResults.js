@@ -27,12 +27,3 @@ class SearchResults extends React.Component {
 }
 
 export default SearchResults;
-
-
-{/* <div key={result.ASIN} className='search-item-container' onClick={() => (this.props.onClick(result))}>
-  <div ><img className='search-image' src={result.image}/></div>
-  <div className='search-details'>
-    <div className='search-title'>{result.title}</div>
-    <div className='search-author'>{result.author}</div>
-  </div>
-</div>  */}

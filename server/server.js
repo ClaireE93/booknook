@@ -9,15 +9,19 @@ app.use(morgan('dev'));
 app.use(express.static(__dirname + './../www'));
 app.use(bodyParser.json());
 
+const endResponse = (err, data, res) => {
+  if (err) {
+   res.statusCode = 404;
+   res.end(err.toString());
+ } else {
+   res.statusCode = 200;
+   res.end(JSON.stringify(data));
+ }
+}
+
 app.post('/books', (req, res, next) => {
   const callback = (err, data) => {
-    if (err) {
-      res.statusCode = 404;
-      res.end(err.toString());
-    } else {
-      res.statusCode = 200;
-      res.end(JSON.stringify(data));
-    }
+    endResponse(err, data, res);
   };
 
   db.save(req.body, callback);
@@ -25,13 +29,7 @@ app.post('/books', (req, res, next) => {
 
 app.get('/books', (req, res, next) => {
   const callback = (err, data) => {
-    if (err) {
-      res.statusCode = 404;
-      res.end(err.toString());
-    } else {
-      res.statusCode = 200;
-      res.end(JSON.stringify(data));
-    }
+    endResponse(err, data, res);
   };
 
   db.fetch(callback);
@@ -39,13 +37,7 @@ app.get('/books', (req, res, next) => {
 
 app.post('/bookSearch', (req, res, next) => {
   const callback = (err, data) => {
-    if (err) {
-      res.statusCode = 404;
-      res.end(err.toString());
-    } else {
-      res.statusCode = 200;
-      res.end(JSON.stringify(data));
-    }
+    endResponse(err, data, res);
   };
 
   helpers.findBook(req.body, callback)
@@ -53,13 +45,7 @@ app.post('/bookSearch', (req, res, next) => {
 
 app.get('/recommendations', (req, res, next) => {
   const callback = (err, data) => {
-    if (err) {
-      res.statusCode = 404;
-      res.end(err.toString());
-    } else {
-      res.statusCode = 200;
-      res.end(JSON.stringify(data));
-    }
+    endResponse(err, data, res);
   };
   helpers.findRecs(req.query, callback);
 });

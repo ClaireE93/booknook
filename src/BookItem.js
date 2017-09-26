@@ -78,11 +78,4 @@ class BookItem extends React.Component {
   }
 }
 
-
 export default BookItem;
-
-{/* <img className='exit-img' src='/exit.png' onClick={this.handleClick}/>
-<img className='details-img' src={this.props.book.image || '../book-cover.jpg'}/>
-<div className='title'>{this.props.book.title}</div>
-<div className='author'>{this.props.book.author}</div>
-<button onClick={this.generateRecommendations}>{this.state.isClicked ? 'Hide' : 'Find Books'}</button>  */}
