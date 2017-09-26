@@ -11,10 +11,6 @@
     font-weight:bold;
 }
 
-.rec-author, .search-author {
-
-}
-
 .rec-hide, .rec-show {
     font-size: 15px;
     max-height: 0;
@@ -107,14 +103,14 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.8);
 }
 
 .details-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 40%;
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    width: 80%;
     height: 80%;
     color: white;
     transform: translate(-50%,-50%);
@@ -132,7 +128,6 @@ img {
 }
 
 .title {
-    /*font-style: italic;*/
     font-weight: bold;
     font-size: 2em;
 }
@@ -150,38 +145,12 @@ img {
     flex-flow: row wrap;
 }
 
-/*.img-container {
-    height: 25%;
-    width: 15%;
-    position: relative;
-}
-
-.img-container img {
-    height: 100%;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: #008CBA;
-}
-
-.img-container:hover .overlay {
-  opacity: 1;
-}*/
-
-
+/*OVERLAY CODE BELOW vvvvv*/
 
 .img-container {
   position: relative;
   width: 50%;
+  text-align: center;
 }
 
 .img-container img {
@@ -200,7 +169,8 @@ img {
   width: 100%;
   opacity: 0;
   transition: .5s ease;
-  background-color: #008CBA;
+  background-color: #858c96;
+  /*background-color: rgba(0,0,0,0.2);*/
 }
 
 .img-container:hover .overlay {
@@ -209,10 +179,20 @@ img {
 
 .text {
   color: white;
-  font-size: 20px;
+  font-size: 1em;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+}
+
+/*OVERLAY CODE ABOVE ^^^^ */
+
+
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
