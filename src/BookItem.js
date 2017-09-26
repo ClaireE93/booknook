@@ -12,7 +12,10 @@ class BookItem extends React.Component {
     }
     this.generateRecommendations = this.generateRecommendations.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
+
+  //COMPONENTDIDMOUNT for escape listener?
 
   generateRecommendations() {
     $.ajax({
@@ -34,13 +37,22 @@ class BookItem extends React.Component {
     this.setState({showDetails: !this.state.showDetails})
   }
 
+  handleKeyDown(e) {
+    console.log('in keydown')
+    if (e.keyCode === 27) {
+      this.handleClick();
+    }
+  }
+
+
   render() {
 
     return (
       <div className='bookItem'>
         <div><img src={this.props.book.image || '../book-cover.jpg'} onClick={this.handleClick}/></div>
         <div className={this.state.showDetails ? 'details-container-show' : 'details-container-hide'}>
-          <div className='details-container'>
+          <div className='details-container' onKeyDown={this.handleKeyDown}>
+            <img className='exit-img' src='/exit.png' onClick={this.handleClick}/>
             <img className='details-img' src={this.props.book.image || '../book-cover.jpg'}/>
             <div className='title'>{this.props.book.title}</div>
             <div className='author'>{this.props.book.author}</div>
