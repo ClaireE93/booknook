@@ -11,12 +11,13 @@ class App extends React.Component {
       books: [],
       isSearch: false,
       searchResults: [],
+      errorMsg: false,
     }
 
     this.handleSearch = this.handleSearch.bind(this);
     this.updateBooks = this.updateBooks.bind(this);
     this.noResult = this.noResult.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
+    this.handleSearchSelect = this.handleSearchSelect.bind(this);
     this.fetch();
   }
 
@@ -27,12 +28,14 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify({title, author}),
       success: (data) => {
-        console.log('successful AJAX SEARCH', data);
         const parsed = JSON.parse(data);
         this.setState({isSearch: !this.state.isSearch, searchResults: parsed});
       },
       error: (err) => {
-        console.log('error in AJAX post', err);
+        this.setState({errorMsg: true});
+        setTimeout(() => {
+          this.setState({errorMsg: false});
+        }, 3000)
       }
     });
   }
@@ -44,7 +47,6 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify(data),
       success: (data) => {
-        console.log('successful AJAX post', data);
         const parsed = JSON.parse(data);
         const newArr = this.state.books.slice();
         newArr.push(parsed);
@@ -56,17 +58,12 @@ class App extends React.Component {
     });
   }
 
-  noResult() {
-    this.setState({inSearch: !this.state.inSearch});
-  }
-
   fetch() {
     $.ajax({
       url: '/books',
       type: 'GET',
       contentType: 'application/json',
       success: (data) => {
-        console.log('successful AJAX GET', data);
         const parsed = JSON.parse(data);
         this.setState({books: parsed});
       },
@@ -76,10 +73,13 @@ class App extends React.Component {
     });
   }
 
-  handleSelect(data) {
-    console.log('selected', data);
+  handleSearchSelect(data) {
     this.setState({isSearch: !this.state.isSearch});
     this.updateBooks(data);
+  }
+
+  noResult() {
+    this.setState({isSearch: false});
   }
 
   render() {
@@ -87,8 +87,8 @@ class App extends React.Component {
       <div>
         <div className='search'>
           <Search onClick={this.handleSearch}/>
-          <SearchResults onClick={this.handleSelect} visible={this.state.isSearch}
-            data={this.state.searchResults} noResult={this.noResult}/>
+          <SearchResults onClick={this.handleSearchSelect} visible={this.state.isSearch}
+            data={this.state.searchResults} noResult={this.noResult} isError={this.state.errorMsg}/>
         </div>
         <div className='bookshelf'>
           <Bookshelf books={this.state.books}/>
@@ -97,7 +97,5 @@ class App extends React.Component {
     );
   }
 }
-
-
 
 export default App;

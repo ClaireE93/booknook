@@ -22,12 +22,13 @@ const findRecs = (data, callback) => {
     callback(null, recArr);
   })
   .catch((err) => {
-    console.log('ERROR IN SIMILARITY LOOKUP!', err);
+    console.error('ERROR IN SIMILARITY LOOKUP!', err);
     callback(err, null);
   })
 };
 
 const findBook = (data, callback) => {
+  console.log(`Searching for: ${data.title} ${data.author}`)
   client.ItemSearch('Books', {
     Keywords: `${data.title} ${data.author}`,
     ResponseGroup: ['Images', 'Small'],

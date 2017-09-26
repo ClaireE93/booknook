@@ -7,11 +7,11 @@
     padding: 10px;
 }
 
-.rec-title {
+.rec-title, .search-title {
     font-weight:bold;
 }
 
-.rec-author {
+.rec-author, .search-author {
 
 }
 
@@ -46,6 +46,24 @@
     max-height: 1000px;
 }
 
+.search-item-container {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.error-message {
+    font-size: 20px;
+    font-weight: bold:
+}
+
+.search-result-container {
+    display: flex;
+}
+
 img {
     height: 25%;
+}
+
+.bookItem {
+    padding: 10px;
 }

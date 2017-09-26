@@ -32,13 +32,13 @@ class BookItem extends React.Component {
 
     return (
       <div className='bookItem'>
-        <div>Title: {this.props.book.title}</div>
-        <div>Author: {this.props.book.author}</div>
-        <button onClick={this.generateRecommendations}>{this.state.isClicked ? 'Hide' : 'Find Books'}</button>
-        <Recommendations visible={this.state.isClicked} books={this.state.recommendationArr}/>
-        {/* {this.state.isClicked &&
-          <Recommendations books={this.state.recommendationArr}/>
-        } */}
+        <div><img src={this.props.book.image}/></div>
+        <div className='details-container'>
+          <div className='title'>{this.props.book.title}</div>
+          <div className='author'>{this.props.book.author}</div>
+          <button onClick={this.generateRecommendations}>{this.state.isClicked ? 'Hide' : 'Find Books'}</button>
+          <Recommendations visible={this.state.isClicked} books={this.state.recommendationArr}/>
+        </div>
       </div>
     );
   }
