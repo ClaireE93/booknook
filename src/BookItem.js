@@ -10,7 +10,7 @@ class BookItem extends React.Component {
       recommendationArr: [],
       showDetails: false,
       lastUpdate: 0,
-    }
+    };
 
     this.generateRecommendations = this.generateRecommendations.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -41,7 +41,7 @@ class BookItem extends React.Component {
       data: {ASIN: this.props.book.ASIN},
       success: (data) => {
         const parsed = JSON.parse(data);
-        this.setState({isClicked: true, recommendationArr: parsed, lastUpdate: new Date()})
+        this.setState({isClicked: true, recommendationArr: parsed, lastUpdate: new Date()});
       },
       error: (err) => {
         console.log('FAILED call to Amazon', err);
@@ -60,7 +60,7 @@ class BookItem extends React.Component {
   }
 
   handleRemove() {
-    this.props.onClick(this.props.book)
+    this.props.onClick(this.props.book);
     this.handleExit();
   }
 
@@ -83,7 +83,6 @@ class BookItem extends React.Component {
             <div className='book-detail-container'>
               <button className='delete-button' onClick={this.handleRemove}>Remove <br/>Book</button>
               <img className='cover-img' src={this.props.book.image}/>
-              {/* <div className='description'>{this.props.book.desc}</div> */}
               <div className='description'>{description}</div>
             </div>
             <Recommendations visible={this.state.isClicked} books={this.state.recommendationArr}/>

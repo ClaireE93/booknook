@@ -26,7 +26,7 @@ const save = (bookObj, callback) => {
     } else {
       callback(null, data);
     }
-  })
+  });
 };
 
 const fetch = (callback) => {

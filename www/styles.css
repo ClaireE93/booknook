@@ -98,10 +98,6 @@ button:hover {
     color: white;
     font-size: 0.7em;
     margin-left: 10px;
-    /*display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;*/
-    /*overflow: hidden;*/
 }
 
 .rec-image {

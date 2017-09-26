@@ -1,6 +1,6 @@
 const keys = require('../config/amazon');
 const Piranhax = require("piranhax");
-const client = new Piranhax(keys.ACCESS_KEY, keys.SECRET_KEY, "booknook0e-20")
+const client = new Piranhax(keys.ACCESS_KEY, keys.SECRET_KEY, "booknook0e-20");
 
 const parseData = (data) => {
   const final = [];
@@ -18,7 +18,7 @@ const parseData = (data) => {
     final.push(obj);
   });
 
-  return final
+  return final;
 };
 
 const findRecs = (data, callback) => {
@@ -29,7 +29,7 @@ const findRecs = (data, callback) => {
   .catch((err) => {
     console.error('ERROR IN SIMILARITY LOOKUP!', err);
     callback(err, null);
-  })
+  });
 };
 
 const findBook = (data, callback) => {

@@ -17,7 +17,7 @@ const endResponse = (err, data, res) => {
    res.statusCode = 200;
    res.end(JSON.stringify(data));
  }
-}
+};
 
 app.post('/books', (req, res, next) => {
   const callback = (err, data) => {
@@ -48,7 +48,7 @@ app.post('/bookSearch', (req, res, next) => {
     endResponse(err, data, res);
   };
 
-  helpers.findBook(req.body, callback)
+  helpers.findBook(req.body, callback);
 });
 
 app.get('/recommendations', (req, res, next) => {

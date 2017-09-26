@@ -2,7 +2,7 @@ import React from 'react';
 import Bookshelf from './Bookshelf';
 import Search from './Search';
 import $ from 'jquery';
-import SearchResults from './SearchResults'
+import SearchResults from './SearchResults';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class App extends React.Component {
       isSearch: false,
       searchResults: [],
       errorMsg: false,
-    }
+    };
 
     this.handleSearch = this.handleSearch.bind(this);
     this.updateBooks = this.updateBooks.bind(this);
@@ -36,7 +36,7 @@ class App extends React.Component {
         this.setState({errorMsg: true});
         setTimeout(() => {
           this.setState({errorMsg: false});
-        }, 3000)
+        }, 3000);
       }
     });
   }

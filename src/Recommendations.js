@@ -1,5 +1,5 @@
 import React from 'react';
-import BookComponent from './BookComponent'
+import BookComponent from './BookComponent';
 
 class Recommendations extends React.Component {
 
