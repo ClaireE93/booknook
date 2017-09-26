@@ -5,22 +5,7 @@ const client = new Piranhax(keys.ACCESS_KEY, keys.SECRET_KEY, "booknook0e-20")
 const findRecs = (data, callback) => {
   client.SimilarityLookup(data.ASIN, {ResponseGroup: ['Images', 'Small']})
   .then((results) => {
-    const data = results.data();
-    const recArr = [];
-    data.Item.forEach((item) => {
-      const obj = {
-        title: item.ItemAttributes.Title,
-        image: item.LargeImage.URL,
-        url: item.DetailPageURL,
-        ASIN: item.ASIN,
-      };
-      const author = typeof item.ItemAttributes.Author === 'object' ?
-                    item.ItemAttributes.Author.join(', ') : item.ItemAttributes.Author;
-      obj.author = author;
-      recArr.push(obj);
-    });
-
-    callback(null, recArr);
+    callback(null, parseData(results.data()));
   })
   .catch((err) => {
     console.error('ERROR IN SIMILARITY LOOKUP!', err);
@@ -34,28 +19,31 @@ const findBook = (data, callback) => {
     ResponseGroup: ['Images', 'Small', 'EditorialReview'],
   })
   .then((results) => {
-    const data = results.data();
-    const final = [];
-    data.Item.forEach((item) => {
-      const obj = {
-        title: item.ItemAttributes.Title,
-        image: item.LargeImage.URL,
-        url: item.DetailPageURL,
-        ASIN: item.ASIN,
-        desc: item.EditorialReviews ? item.EditorialReviews.EditorialReview.Content : 'No Description Available',
-      };
-      const author = typeof item.ItemAttributes.Author === 'object' ?
-                    item.ItemAttributes.Author.join(', ') : item.ItemAttributes.Author;
-      obj.author = author;
-      final.push(obj);
-    });
-
-    callback(null, final);
+    callback(null, parseData(results.data()));
   })
   .catch((err) => {
     callback(err, null);
   });
 };
+
+const parseData = (data) => {
+  const final = [];
+  data.Item.forEach((item) => {
+    const obj = {
+      title: item.ItemAttributes.Title,
+      image: item.LargeImage.URL,
+      url: item.DetailPageURL,
+      ASIN: item.ASIN,
+      desc: item.EditorialReviews ? item.EditorialReviews.EditorialReview.Content : 'No Description Available',
+    };
+    const author = typeof item.ItemAttributes.Author === 'object' ?
+                  item.ItemAttributes.Author.join(', ') : item.ItemAttributes.Author;
+    obj.author = author;
+    final.push(obj);
+  });
+
+  return final
+}
 
 module.exports.findRecs = findRecs;
 module.exports.findBook = findBook;

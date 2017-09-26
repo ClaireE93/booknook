@@ -111,7 +111,6 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
-    /*background-color: rgba(0,0,0,0.8);*/
     background-color: rgba(51,51,58, 0.9);
 }
 
@@ -189,4 +188,8 @@ img {
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

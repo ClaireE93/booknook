@@ -9,17 +9,17 @@ class BookItem extends React.Component {
       isClicked: false,
       recommendationArr: [],
       showDetails: false,
+      lastUpdate: 0,
     }
     this.generateRecommendations = this.generateRecommendations.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
     $(document).keydown((e) => {
       if (e.keyCode === 27 && this.state.showDetails) {
-        this.setState({showDetails: false});
+        this.setState({showDetails: false, isClicked: false});
       }
     });
     $('body').click(() => {
-      this.setState({showDetails: false});
+      this.setState({showDetails: false, isClicked: false});
     });
     $('.search-item-container').click((e) => {
        e.stopPropagation();
@@ -27,32 +27,36 @@ class BookItem extends React.Component {
   }
 
   generateRecommendations() {
+    //NOTE: Only fetch new recommendations once a day. Commented out
+    // Since animations are not working.
+    const curDate = new Date();
+    const dateDiff = curDate - this.state.lastUpdate;
+    const MS_IN_DAY = 1000 * 60 * 60 * 24;
+
+    // if (dateDiff < MS_IN_DAY) {
+    //   this.setState({isClicked: true});
+    //   return;
+    // }
+
     $.ajax({
       url: '/recommendations',
       type: 'GET',
       data: {ASIN: this.props.book.ASIN},
       success: (data) => {
         const parsed = JSON.parse(data);
-        this.setState({isClicked: !this.state.isClicked, recommendationArr: parsed})
+        this.setState({isClicked: true, recommendationArr: parsed, lastUpdate: new Date()})
       },
       error: (err) => {
         console.log('FAILED call to Amazon', err);
       }
-    })
+    });
+
   }
 
   handleClick() {
-    this.setState({showDetails: !this.state.showDetails});
+    this.setState({showDetails: true});
     this.generateRecommendations();
   }
-
-  handleKeyDown(e) {
-    console.log('in keydown')
-    if (e.keyCode === 27) {
-      this.handleClick();
-    }
-  }
-
 
   render() {
 
@@ -65,7 +69,7 @@ class BookItem extends React.Component {
             </div>
         </div>
         <div className={this.state.showDetails ? 'details-container-show' : 'details-container-hide'}>
-          <div className='details-container' onKeyDown={this.handleKeyDown}>
+          <div className='details-container'>
             <Recommendations visible={this.state.isClicked} books={this.state.recommendationArr}/>
           </div>
         </div>
