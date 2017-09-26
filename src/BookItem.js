@@ -37,7 +37,6 @@ class BookItem extends React.Component {
 
   handleClick() {
     this.setState({showDetails: !this.state.showDetails});
-    // Show this.props.book.desc
     this.generateRecommendations();
   }
 

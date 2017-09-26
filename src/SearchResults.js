@@ -16,7 +16,7 @@ class SearchResults extends React.Component {
           Did you mean...?
           <div className='search-result-container'>
             {this.props.data.map((result) => (
-              <BookComponent key={result.ASIN} book={result} onClick={this.props.onClick}/>
+              <BookComponent key={result.ASIN} book={result} isLink={false} onClick={this.props.onClick}/>
             ))}
           </div>
           <button onClick={this.props.noResult}>None of these</button>
