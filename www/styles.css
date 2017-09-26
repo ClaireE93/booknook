@@ -15,7 +15,6 @@ button:hover {
     font-weight: bold;
 }
 
-
 .rec-hide, .rec-show, .search-hide, .search-show{
     font-size: 15px;
     max-height: 0;
@@ -121,6 +120,7 @@ img {
 .bookshelf-container{
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 .bookshelf {
