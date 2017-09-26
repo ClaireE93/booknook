@@ -18,6 +18,12 @@ class BookItem extends React.Component {
         this.setState({showDetails: false});
       }
     });
+    $('body').click(() => {
+      this.setState({showDetails: false});
+    });
+    $('.search-item-container').click((e) => {
+       e.stopPropagation();
+    });
   }
 
   generateRecommendations() {
