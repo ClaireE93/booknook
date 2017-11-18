@@ -1,7 +1,7 @@
 ### node etc ###
 
 www/bundle.js
-config
+config/amazon.js
 
 # Logs
 logs
