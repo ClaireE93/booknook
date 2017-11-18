@@ -24,17 +24,6 @@ class BookItem extends React.Component {
   }
 
   generateRecommendations() {
-    //NOTE: Only fetch new recommendations once a day. Commented out
-    // Since animations are not working.
-
-    // const curDate = new Date();
-    // const dateDiff = curDate - this.state.lastUpdate;
-    // const MS_IN_DAY = 1000 * 60 * 60 * 24;
-    // if (dateDiff < MS_IN_DAY) {
-    //   this.setState({isClicked: true});
-    //   return;
-    // }
-
     $.ajax({
       url: '/recommendations',
       type: 'GET',

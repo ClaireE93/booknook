@@ -84,16 +84,13 @@ class App extends React.Component {
   }
 
   handleDeleteClick(book) {
-    let spliceInd = 0;
     const targetId = book.ASIN;
+    const newBookArr = [];
     for (let i = 0; i < this.state.books.length; i++) {
-      if (this.state.books[i].ASIN === targetId) {
-        spliceInd = i;
+      if (this.state.books[i].ASIN !== targetId) {
+        newBookArr.push(this.state.books[i]);
       }
     }
-    const newArr = this.state.books.slice();
-    newArr.splice(spliceInd, 1);
-    this.setState({books: newArr});
 
     $.ajax({
       url: '/books',
@@ -101,7 +98,7 @@ class App extends React.Component {
       contentType: 'application/json',
       data: JSON.stringify(book),
       success: (data) => {
-        console.log('successful DELETE');
+        this.setState({books: newBookArr});
       },
       error: (err) => {
         console.log('error in DELETE', err);
